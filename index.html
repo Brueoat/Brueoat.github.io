@@ -177,7 +177,7 @@
 
       <!-- 5) Submit / Back -->
       <div class="actions">
-        <button type="submit" class="primary">Submit</button>
+        <button type="submit" class="primary" onclick="to_npi()">Submit</button>
         <button type="button" onclick="history.back()">Back</button>
       </div>
     </form>
@@ -238,6 +238,10 @@
       fileInput.files = e.dataTransfer.files; // copy dropped files into the input
       renderNames();
     });
+
+    function to_npi() {
+      location.href = 'g1_request_npi.html';
+    }
   </script>
 </body>
 
