@@ -1,0 +1,134 @@
+    /* ===== Basic page styles ===== */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #edfff4;
+      color: #123;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 24px auto;
+      background: #fff;
+      border: 1px solid #e3e8ee;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+
+    .hint {
+      color: #667;
+      font-size: 13px;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #e8eef5;
+      margin: 12px 0;
+    }
+
+    @media (max-width: 900px) {
+
+      .col-6,
+      .col-4 {
+        grid-column: span 12;
+      }
+    }
+
+    /* ===== Form controls ===== */
+    label {
+      display: block;
+      font-size: 12px;
+      color: #556;
+      margin-bottom: 4px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #d8e1ea;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fafcff;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    /* ===== Table for project rows ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      font-size: 12px;
+      color: #667;
+      border-bottom: 1px solid #e8eef5;
+      padding: 6px 8px;
+    }
+
+    tbody td {
+      padding: 2px 12px;
+      border-bottom: 1px solid #f0f4f9;
+    }
+
+    /* ===== Buttons ===== */
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+
+    button {
+      padding: 9px 14px;
+      border: 1px solid #b7e4ea;
+      background: #e7fbff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: #14c4cc;
+      color: hwb(0 100% 0%);
+      border-color: #14c4cc;
+    }
+
+    button.danger {
+      background: #ffdede;
+      border-color: #ffc8c8;
+    }
+
+    .row-actions {
+      display: flex;
+      gap: 6px;
+      margin: 8px 0;
+    }
+
+
+    /* ===== Dropzone (very simple) ===== */
+    .dropzone {
+      border: 2px dashed #bfeaf0;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      color: #336;
+      background: #f6fdff;
+      cursor: pointer;
+    }
+
+    .files {
+      color: #667;
+      font-size: 13px;
+      margin-top: 6px;
+    }
