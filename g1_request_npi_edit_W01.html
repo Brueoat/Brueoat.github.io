@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="g1_style.css">
 
+    <script src="jquery-3.7.1.min.js"></script>
+
 
 </head>
 <body>
@@ -123,48 +125,63 @@
 
         <!-- 5) Submit / Back -->
       <div class="actions">
-        <button type="submit" class="primary">Submit</button>
-        <button type="button" onclick="history.back()">Back</button>
+        <button type="submit" class="primary">Save</button>
+        <button type="button" onclick="history.back()">Discrad</button>
       </div>
     </form>
 
 
-       
-
     <script>
         function addrow_buildstatus() {
-        const woValue = document.getElementById('WOInput').value.trim();  
-             if (!woValue) {
-                alert('Please enter a Work Order before adding a new row.');
-            return;
-            }          
-        const table = document.getElementById('buildstatus');
-        const rows = document.getElementById('rowsbuildstatus');
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td>
-                <div>${woValue}</div>
-            </td>
-            <td>
-                <select>
-                    <option>Prototype</option>
-                    <option>EVT</option>
-                    <option>DVT</option>
-                    <option>PVT</option>
-                </select>
-            </td>
-            <td>
-               <select>
-                    <option>Open</option>
-                    <option>In Progress</option>
-                    <option>Closed</option>
-                </select>
-            </td>
-            <td>
-                <button type="button" class="danger" onclick="deleterow_buildstatus(this)"> Delete </button>
-            </td>`;
-        
-        rows.appendChild(newRow); }
+            const woValue = document.getElementById('WOInput').value.trim();  
+                if (!woValue) {
+                    alert('Please enter a Work Order before adding a new row.');
+                return;
+                }          
+            const table = document.getElementById('buildstatus');
+            const rows = document.getElementById('rowsbuildstatus');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>
+                    <div>${woValue}</div>
+                </td>
+                <td>
+                    <select>
+                        <option>Prototype</option>
+                        <option>EVT</option>
+                        <option>DVT</option>
+                        <option>PVT</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="build_status_progression">
+                </td>
+                <td>
+                    <button type="button" class="danger" onclick="deleterow_buildstatus(this)"> Delete </button>
+                </td>`;
+            
+            rows.appendChild(newRow); 
+
+            $.ajax({
+                url: 'status.json',
+                dataType: 'json',
+                success: function(data) {
+                    build_status_progression.forEach(select => {
+                        data.status.forEach(status => {
+                            const option = document.createElement('option');
+                            option.value = status.id;      // use ID as value
+                            option.textContent = status.name; // display name
+                            select.appendChild(option);
+                        });
+                    });
+                },
+                error: function() {
+                    alert('Failed to load data');
+                }
+            });
+
+
+        }
 
     function deleterow_buildstatus(button) {
         const table = document.getElementById('buildstatus');
@@ -174,8 +191,13 @@
         } else {
             alert('Cannot delete the last row.');
         }
+                
+
     }   
 
     </script>
+
+
+
 </body>
 </html>
